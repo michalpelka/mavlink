@@ -2,7 +2,7 @@
 <mavlink>
      <version>3</version>
      <enums>
-		 <enum name="MAV_OVERRIDE_TYPE">
+		<enum name="MAV_OVERRIDE_TYPE">
                <description>RC control override type</description>
                <entry value="0" name="MAV_OVERRIDE_IGNORE">
                     <description>This override message will be ignored</description>
