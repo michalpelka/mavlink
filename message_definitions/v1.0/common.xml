@@ -2,6 +2,28 @@
 <mavlink>
      <version>3</version>
      <enums>
+		 <enum name="MAV_OVERRIDE_TYPE">
+               <description>RC control override type</description>
+               <entry value="0" name="MAV_OVERRIDE_IGNORE">
+                    <description>This override message will be ignored</description>
+               </entry>
+               <entry value="1" name="MAV_OVERRIDE_MAVLINK">
+                    <description>MAVLINK has priority due to RC</description>
+               </entry>
+               <entry value="2" name="MAV_OVERRIDE_RC">
+                    <description>RC priorirty, message will be overided only if RC stick is in neutral</description>
+               </entry>
+               <entry value="3" name="MAV_OVERRIDE_ADD">
+                    <description>MAVLINK ovveride will be added to RC</description>
+               </entry>
+            </enum>
+          <enum name="DATA_TYPES">
+               <description>Content Types for data transmission handshake</description>
+               <entry value="1" name="DATA_TYPE_JPEG_IMAGE"/>
+               <entry value="2" name="DATA_TYPE_RAW_IMAGE"/>
+               <entry value="3" name="DATA_TYPE_KINECT"/>
+          </enum>
+          
           <enum name="MAV_AUTOPILOT">
                <description>Micro air vehicle / autopilot classes. This identifies the individual model.</description>
                <entry value="0" name="MAV_AUTOPILOT_GENERIC">
@@ -2933,6 +2955,20 @@
             <field type="float" name="size_x">Size in radians of target along x-axis</field>
             <field type="float" name="size_y">Size in radians of target along y-axis</field>
         </message>
+         <message id="207" name="RC_OFFBOARD">
+               <description></description>
+               <field type="uint8_t" name="target_system">System ID</field>
+               <field type="uint8_t" name="target_component">Component ID</field>
+               <field type="float"   name="throttle"></field>
+               <field type="float"   name="pitch"></field>
+               <field type="float"   name="roll"></field>
+               <field type="float"   name="yaw"></field>                  
+               <field type="uint8_t" name="throttle_mode">0-override with MAVLINK priority, 1-override with RC priority, 2- add to RC</field> 
+               <field type="uint8_t" name="pitch_mode">0-override with MAVLINK priority, 1-override with RC priority, 2- add to RC</field> 
+               <field type="uint8_t" name="roll_mode">0-override with MAVLINK priority, 1-override with RC priority, 2- add to RC</field> 
+               <field type="uint8_t" name="yaw_mode">0-override with MAVLINK priority, 1-override with RC priority, 2- add to RC</field> 
+          </message>  
+          
         <!-- MESSAGE IDs 180 - 240: Space for custom messages in individual projectname_messages.xml files -->
         <message id="241" name="VIBRATION">
             <description>Vibration levels and accelerometer clipping</description>
@@ -3025,5 +3061,7 @@
                <field type="uint8_t" name="ind">index of debug variable</field>
                <field type="float" name="value">DEBUG value</field>
           </message>
+          
+          
      </messages>
 </mavlink>
